@@ -29,7 +29,7 @@ public class Producto {
 		super();
 		
 	}
-
+	/*
 	//Constructor parametrizado
 	public Producto(int codigo, String descripcion, double precioUnitario, OrigenFabricacion origen,
 			Categoria categoria) {
@@ -40,7 +40,7 @@ public class Producto {
 		this.origen = origen;
 		this.categoria = categoria;
 	}
-
+	*/
 	//Getters and Setters
 	public int getCodigo() {
 		return codigo;
@@ -81,5 +81,13 @@ public class Producto {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
+
+	@Override
+	public String toString() {
+		return "Producto codigo= " + codigo + " - descripcion= " + descripcion + " - precio Unitario= " + precioUnitario
+				+ " - origen= " + origen + " - categoria= " + categoria ;
+	}
+	
+	
 	
 }
