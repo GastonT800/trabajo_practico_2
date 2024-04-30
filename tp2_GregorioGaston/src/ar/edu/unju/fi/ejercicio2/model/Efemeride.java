@@ -7,7 +7,7 @@ public class Efemeride {
 	//Atributos
 	private int codigo;
 	private Mes mes;
-	private String dia;
+	private int dia;
 	private String detalle;
 	
 	
@@ -17,7 +17,7 @@ public class Efemeride {
 	}
 
 	//Constructor parametrizado
-	public Efemeride(int codigo, Mes mes, String dia, String detalle) {
+	public Efemeride(int codigo, Mes mes, int dia, String detalle) {
 		super();
 		this.codigo = codigo;
 		this.mes = mes;
@@ -43,11 +43,11 @@ public class Efemeride {
 		this.mes = mes;
 	}
 
-	public String getDia() {
+	public int getDia() {
 		return dia;
 	}
 
-	public void setDia(String dia) {
+	public void setDia(int dia) {
 		this.dia = dia;
 	}
 
@@ -61,7 +61,7 @@ public class Efemeride {
 
 	@Override
 	public String toString() {
-		return "Efemeride codigo=" + codigo + " - mes=" + mes + " - dia=" + dia + " - detalle=" + detalle;
+		return "Efemeride codigo= " + codigo + " - mes= " + mes + " - dia= " + dia + " - detalle= " + detalle;
 	}
 	
 	
