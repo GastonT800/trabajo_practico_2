@@ -7,26 +7,32 @@ import ar.edu.unju.fi.ejercicio5.interfaces.Pago;
 public class PagoEfectivo implements Pago {
 
 	//Atributos
-	private double monto;
+	private double montoPagado;
 	private LocalDate fechaPago;
 	
-	//Constructor Parametrizado
-	public PagoEfectivo(double monto, LocalDate fechaPago) {
+	
+	//Constructor por defecto
+	public PagoEfectivo() {
 		super();
-		this.monto = monto;
+	}
+
+	//Constructor Parametrizado
+	public PagoEfectivo(double montoPagado, LocalDate fechaPago) {
+		super();
+		this.montoPagado = montoPagado;
 		this.fechaPago = fechaPago;
 	}
 
 	//Getters and Setters
-	public double getMonto() {
-		return monto;
+	public double getMontoPagado() {
+		return montoPagado;
 	}
 
 
 
 
-	public void setMonto(double monto) {
-		this.monto = monto;
+	public void setMontoPagado(double montoPagado) {
+		this.montoPagado = montoPagado;
 	}
 
 
@@ -47,14 +53,24 @@ public class PagoEfectivo implements Pago {
 
 
 	@Override
-	public void realizarPago(double monto) {
-		// TODO Auto-generated method stub
+	public void realizarPago(double montoPagado) {
+
+		double montoActualizado, descuento;
+		
+		descuento = montoPagado * 0.10;
+		montoActualizado = montoPagado - descuento;
+		
+		setMontoPagado(montoActualizado);
 
 	}
 
 	@Override
 	public void imprimirRecibo() {
-		// TODO Auto-generated method stub
+		
+		System.out.println("*** RECIBO PAGO EFECTIVO ***");
+		System.out.println("Fecha de pago: " + LocalDate.now()); 
+	    System.out.println("Monto pagado: " + montoPagado);
+
 
 	}
 

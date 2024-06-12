@@ -17,7 +17,7 @@ public class Main {
 		ArrayList<Jugador> jugadores = new ArrayList<>();
 		
 		int opcion;
-		try {
+		//try {
 		do {
 			System.out.println("\n****************************");
 			System.out.println("********* MENU *************");
@@ -26,9 +26,16 @@ public class Main {
 			System.out.println("3- Modificar la posición de un jugador");
 			System.out.println("4- Eliminar un jugador");
 			System.out.println("5- Salir");
-			System.out.print("\nSeleccione una opcion: ");
-			opcion = escaner.nextInt();
-			escaner.nextLine();
+			try {
+				System.out.print("\nSeleccione una opcion: ");
+				opcion = escaner.nextInt();
+				escaner.nextLine();
+			}catch(Exception e) {
+	        	System.out.println("\nDebe de Ingresar un Número para que la OPCION sea Valida");
+	        	escaner.nextLine();
+				opcion = 0;
+	        }
+			
 			
 			 switch (opcion) {
              case 1:
@@ -37,41 +44,49 @@ public class Main {
                  String nombre = escaner.nextLine();
                  System.out.print("Ingrese apellido del jugador: ");
                  String apellido = escaner.nextLine();
-                 System.out.println("Acontinuacion ingresera su fecha de nacimiento en orden");
-                 System.out.print("Ingrese su dia: ");
-                 int dia = escaner.nextInt();
-                 System.out.print("Ingrese el mes: ");
-                 int mes = escaner.nextInt();
-                 System.out.print("Ingrese el año: ");
-                 int anio = escaner.nextInt();
-                 LocalDate fechaNacimiento = LocalDate.of(anio,mes,dia);
-                 escaner.nextLine();
-                 System.out.println("La fecha de nacimiento ingresada fue: " + dia + "/" + mes + "/" + anio);
-                 System.out.print("Ingrese la nacionalidad: ");
-                 String nacionalidad = escaner.nextLine();
-                 System.out.print("Ingrese la estatura: ");
-                 double estatura = escaner.nextDouble();
-                 System.out.print("Ingrese el peso: ");
-                 double peso = escaner.nextDouble();
-                 System.out.println("\n*** Posiciones ***");
-                 int i=0;
-                 for(Posicion posicion: Posicion.values()) {
-                	 i+=1;
-                	 System.out.println(i+" - " + posicion);
+                 try {
+                	 System.out.println("Acontinuacion ingresera su fecha de nacimiento en orden");
+                     System.out.print("Ingrese su dia: ");
+                     int dia = escaner.nextInt();
+                     System.out.print("Ingrese el mes: ");
+                     int mes = escaner.nextInt();
+                     System.out.print("Ingrese el año: ");
+                     int anio = escaner.nextInt();
+                     LocalDate fechaNacimiento = LocalDate.of(anio,mes,dia);
+                     System.out.println("La fecha de nacimiento ingresada fue: " + dia + "/" + mes + "/" + anio);
+                     escaner.nextLine();
+                     System.out.print("Ingrese la nacionalidad: ");
+                     String nacionalidad = escaner.nextLine();
+                     System.out.print("Ingrese la estatura: ");
+                     double estatura = escaner.nextDouble();
+                     System.out.print("Ingrese el peso: ");
+                     double peso = escaner.nextDouble();
+                     System.out.println("\n*** Posiciones ***");
+                     int i=0;
+                     for(Posicion posicion: Posicion.values()) {
+                    	 i+=1;
+                    	 System.out.println(i+" - " + posicion);
+                     }
+                     System.out.print("\nIngrese la posicion del jugador: ");
+                     int pos = escaner.nextInt();
+                     while(pos<1 || pos>4) {
+                    	 System.out.print("Ingrese la posicion del jugador: ");
+                    	 pos = escaner.nextInt();
+                     }
+                     escaner.nextLine();
+                     Posicion posicion = Posicion.values()[pos - 1];
+                     //System.out.println("La posicion del jugadpr es: " + posicion);
+                     
+                     Jugador nuevoJudador = new Jugador(nombre, apellido, fechaNacimiento, nacionalidad, estatura, peso, posicion);
+                     jugadores.add(nuevoJudador);
+                     System.out.println("\nEl alta del jugador fue cargado correctamente");
+                     escaner.nextLine();
+                 }catch(Exception e) {
+     				System.out.println("Error");
+     				escaner.nextLine();
                  }
-                 System.out.print("\nIngrese la posicion del jugador: ");
-                 int pos = escaner.nextInt();
-                 while(pos<1 || pos>4) {
-                	 System.out.print("Ingrese la posicion del jugador: ");
-                	 pos = escaner.nextInt();
-                 }
-                 escaner.nextLine();
-                 Posicion posicion = Posicion.values()[pos - 1];
-                 //System.out.println("La posicion del jugadpr es: " + posicion);
                  
-                 Jugador nuevoJudador = new Jugador(nombre, apellido, fechaNacimiento, nacionalidad, estatura, peso, posicion);
-                 jugadores.add(nuevoJudador);
-                 System.out.println("\nEl alta del jugador fue cargado correctamente");
+                 
                  break;
              case 2:
             	 if(jugadores.isEmpty()) {
@@ -93,6 +108,7 @@ public class Main {
   					
   				}else {
             	 
+  					try {
 	            	 System.out.println("\n*** Modificar la posición de un jugador ***");
 	            	 System.out.print("Ingrese el nombre del jugador: ");
 	            	 nombre = escaner.nextLine();
@@ -128,8 +144,12 @@ public class Main {
 	            	 if (!buscar) {
 	                     System.out.println("\nNo se encontró a ningun jugador con ese nombre y apellido");
 	                 }
+  					}catch(Exception e) {
+  	  					System.out.println("Error en el ingreso de datos, intente otra vez");
+  	  					escaner.nextLine();
+  	  				}
   				 }
-            	
+  				
                  break;
              case 4:
             	 
@@ -171,12 +191,12 @@ public class Main {
 		}while (opcion != 5);
 		
 		escaner.close();
-		
+		/*
 		}catch(Exception e) {
 			
 	        System.out.println("Se ha Producido un Error durante la Ejecutacion del Programa");
 	        System.out.println("****** PROGRAMA FINALIZADO ****");
-		}
+		}*/
 		
 	}
 

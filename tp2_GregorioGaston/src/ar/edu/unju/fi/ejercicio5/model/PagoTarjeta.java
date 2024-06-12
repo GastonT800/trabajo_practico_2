@@ -9,14 +9,28 @@ public class PagoTarjeta implements Pago {
 	//Atributos
 	private String numeroTarjeta;
 	private LocalDate fechaPago;
-	private double montoPago;
+	private double montoPagado;
 	
+	//Constructor por defecto
+	public PagoTarjeta() {
+		super();
+	}
+	
+	
+	//Constructor con 1 parametros
+	public PagoTarjeta(String numeroTarjeta) {
+		super();
+		this.numeroTarjeta = numeroTarjeta;
+	}
+
+
+
 	//Constructor Parametrizado
-	public PagoTarjeta(String numeroTarjeta, LocalDate fechaPago, double montoPago) {
+	public PagoTarjeta(String numeroTarjeta, LocalDate fechaPago, double montoPagado) {
 		super();
 		this.numeroTarjeta = numeroTarjeta;
 		this.fechaPago = fechaPago;
-		this.montoPago = montoPago;
+		this.montoPagado = montoPagado;
 	}
 
 	//Getters and Setters
@@ -44,27 +58,36 @@ public class PagoTarjeta implements Pago {
 
 
 
-	public double getMontoPago() {
-		return montoPago;
+	public double getMontoPagado() {
+		return montoPagado;
 	}
 
 
 
-	public void setMontoPago(double montoPago) {
-		this.montoPago = montoPago;
+	public void setMontoPago(double montoPagado) {
+		this.montoPagado = montoPagado;
 	}
 
 
 
 	@Override
-	public void realizarPago(double monto) {
+	public void realizarPago(double montoPagado) {
 		
-
+		double recargo, montoActualizado;
+		
+		recargo = montoPagado * 0.15;
+		montoActualizado = montoPagado + recargo;
+		
+		this.montoPagado = montoActualizado;
 	}
 
 	@Override
 	public void imprimirRecibo() {
 		
+		System.out.println("\n*** RECIBO PAGO TARJETA ***");
+		System.out.println("Número de tarjeta: " + numeroTarjeta);
+	    System.out.println("Fecha de pago: " + LocalDate.now()); 
+	    System.out.println("Monto pagado: $" + montoPagado);
 
 	}
 
