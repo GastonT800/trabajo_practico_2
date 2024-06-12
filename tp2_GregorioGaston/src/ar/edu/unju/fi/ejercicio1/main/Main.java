@@ -17,7 +17,7 @@ public class Main {
 		
 		//Definimos variable
 		int opcion;
-		try {
+		//try {
 		do {
 			System.out.println("****************************");
 			System.out.println("********* MENU *************");
@@ -25,9 +25,15 @@ public class Main {
 			System.out.println("2- Mostrar Producto");
 			System.out.println("3- Modificar Producto");
 			System.out.println("4- Salir");
+			try {
 			System.out.print("Seleccione una opcion: ");
 			opcion = entrada.nextInt();
-			
+			}catch(Exception e) {
+	        	System.out.println("\nDebe de Ingresar un Número para que la OPCION sea Valida");
+	        	entrada.nextLine();
+				opcion = 0;
+			}
+			try {
 			switch(opcion) {
 			
 			case 1:
@@ -287,16 +293,19 @@ public class Main {
 				System.out.println("");
 				
 			}
-			
+			}catch(Exception e) {
+ 				System.out.println("Error");
+ 				entrada.nextLine();
+             }
 			
 		}while (opcion != 4);
 		
 		
-			
+		/*	
 		} catch (java.util.InputMismatchException e) {
 			System.out.println("ERROR, EL INGRESO DE DATO NO COINCIDE CON EL TIPO DE DATO ");
 		
-		}
+		}*/
 		entrada.close();
 	}
 

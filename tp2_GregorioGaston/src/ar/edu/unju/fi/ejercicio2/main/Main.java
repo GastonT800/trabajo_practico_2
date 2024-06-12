@@ -16,7 +16,7 @@ public class Main {
 		
 		//Definimos variable
 		int opcion;
-		try {
+		//try {
 		do {
 			System.out.println("\n****************************");
 			System.out.println("********* MENU *************");
@@ -25,10 +25,16 @@ public class Main {
 			System.out.println("3- Eliminar efeméride");
 			System.out.println("4- Modificar efeméride");
 			System.out.println("5- Salir");
+			try {
 			System.out.print("Seleccione una opcion: ");
 			opcion = entrada.nextInt();
 			entrada.nextLine();
-			
+			}catch(Exception e) {
+	        	System.out.println("\nDebe de Ingresar un Número para que la OPCION sea Valida");
+	        	entrada.nextLine();
+				opcion = 0;
+			}
+			try {
 			switch (opcion){
 			
 			case 1:
@@ -36,6 +42,7 @@ public class Main {
 				Efemeride nuevoEfemeride = new Efemeride();
 				
 				System.out.println("\nCrear un nuevo efeméride");
+				try {
 				System.out.print("Ingrese código: ");
 				nuevoEfemeride.setCodigo(entrada.nextInt());
 				int i=0;
@@ -133,6 +140,11 @@ public class Main {
 		        efemerides.add(nuevoEfemeride);
 		        System.out.println("\nEfeméride fue creado");
 		        
+				}catch(Exception e) {
+     				System.out.println("Error");
+     				entrada.nextLine();
+                 }
+				
 				break;
 				
 			case 2:
@@ -231,14 +243,14 @@ public class Main {
                         		break;
                         		
                         	case 2:
-                        		i=0;
+                        		int i=0;
                         		for(Mes mes: Mes.values()) {
                 					i+=1;
                 					System.out.println("Mes del año - " + i +": " + mes);
                 					
                 				}
                 				System.out.print("\nIngrese el número de Mes: ");
-                		        numMes = entrada.nextInt();
+                		        int numMes = entrada.nextInt();
                 		        entrada.nextLine();
                 		        while (numMes < 1 || numMes > 12) {
                 		            System.out.println("OPCION INCORRECTA");
@@ -317,7 +329,7 @@ public class Main {
                         	case 3:
                         		
                         		System.out.print("\nIngrese el Dia del Mes " + efemeride.getMes() + ": ");
-                		        dia = entrada.nextInt();
+                		        int dia = entrada.nextInt();
                 		        while(dia<1 || dia>31) {
                 		        	System.out.print("\nIngrese Dia del Mes " + efemeride.getMes());
                 		        	dia = entrada.nextInt();
@@ -361,16 +373,22 @@ public class Main {
 				//System.out.println("");
 				
 			}
+			}catch(Exception e) {
+				System.out.println("Error");
+				entrada.nextLine();
+			}
 			
 		}while(opcion != 5);
 		
+		
+		
 		entrada.close();
 		
-		}catch(Exception e) {
+		/*}catch(Exception e) {
 			
 	        System.out.println("Se ha Producido un Error dutrante la Ejecutacion del Programa");
 	        System.out.println("****** PROGRAMA FINALIZADO ****");
-		}
+		}*/
 	}
 
 }
